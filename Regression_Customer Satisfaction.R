@@ -121,13 +121,17 @@ lm1 <- lm(overall ~ rides, data=park)
 
 # 8. Assess result
 summary(lm1)
-str(summary(lm1))
 summary(lm1)$r.squared 
 summary(lm1)$coefficients[,c("t value")]
 summary(lm1)$coefficients[,3]
 
 
 #how to call Fstatistic value??
+
+# alternative analysis with distance as the response variable and all other scores as predictors
+lm2 <- lm(distance ~ rides + games + wait + clean, data=park)
+summary(lm2)
+
 
 # Prediction:
 park$pred=predict(lm1, newdata = park)

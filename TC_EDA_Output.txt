@@ -1,0 +1,326 @@
+﻿Rscript.exe : Loading required package: dplyr
+At line:1 char:1
++ & "C:\Program Files\R\R-4.5.2\bin\Rscript.exe" TC_EDA_Analysis.R 2>&1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Loading required package: dplyr:S 
+   tring) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+Loading required package: corrplot
+corrplot 0.95 loaded
+Loading required package: car
+Loading required package: carData
+
+Attaching package: 'car'
+
+The following object is masked from 'package:dplyr':
+
+    recode
+
+Warning message:
+package 'car' was built under R version 4.5.3 
+
+=== DATA STRUCTURE ===
+'data.frame':	1436 obs. of  39 variables:
+ $ Id               : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Model            : chr  "TOYOTA Corolla 2.0 D4D HATCHB TERRA 2/3-Doors" "TOYOTA Corolla 2.0 D4D HATCHB TERRA 2/3-Doors" "\xa0TOYOTA Corolla 2.0 D4D HATCHB TERRA 2/3-Doors" "TOYOTA Corolla 2.0 D4D HATCHB TERRA 2/3-Doors" ...
+ $ Price            : int  13500 13750 13950 14950 13750 12950 16900 18600 21500 12950 ...
+ $ Age_08_04        : int  23 23 24 26 30 32 27 30 27 23 ...
+ $ Mfg_Month        : int  10 10 9 7 3 1 6 3 6 10 ...
+ $ Mfg_Year         : int  2002 2002 2002 2002 2002 2002 2002 2002 2002 2002 ...
+ $ KM               : int  46986 72937 41711 48000 38500 61000 94612 75889 19700 71138 ...
+ $ Fuel_Type        : chr  "Diesel" "Diesel" "Diesel" "Diesel" ...
+ $ HP               : int  90 90 90 90 90 90 90 90 192 69 ...
+ $ Met_Color        : int  1 1 1 0 0 0 1 1 0 0 ...
+ $ Color            : chr  "Blue" "Silver" "Blue" "Black" ...
+ $ Automatic        : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ CC               : int  2000 2000 2000 2000 2000 2000 2000 2000 1800 1900 ...
+ $ Doors            : int  3 3 3 3 3 3 3 3 3 3 ...
+ $ Cylinders        : int  4 4 4 4 4 4 4 4 4 4 ...
+ $ Gears            : int  5 5 5 5 5 5 5 5 5 5 ...
+ $ Quarterly_Tax    : int  210 210 210 210 210 210 210 210 100 185 ...
+ $ Weight           : int  1165 1165 1165 1165 1170 1170 1245 1245 1185 1105 ...
+ $ Mfr_Guarantee    : int  0 0 1 1 1 0 0 1 0 0 ...
+ $ BOVAG_Guarantee  : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Guarantee_Period : int  3 3 3 3 3 3 3 3 3 3 ...
+ $ ABS              : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Airbag_1         : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Airbag_2         : int  1 1 1 1 1 1 1 1 0 1 ...
+ $ Airco            : int  0 1 0 0 1 1 1 1 1 1 ...
+ $ Automatic_airco  : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Boardcomputer    : int  1 1 1 1 1 1 1 1 0 1 ...
+ $ CD_Player        : int  0 1 0 0 0 0 0 1 0 0 ...
+ $ Central_Lock     : int  1 1 0 0 1 1 1 1 1 0 ...
+ $ Powered_Windows  : int  1 0 0 0 1 1 1 1 1 0 ...
+ $ Power_Steering   : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Radio            : int  0 0 0 0 0 0 0 0 1 0 ...
+ $ Mistlamps        : int  0 0 0 0 1 1 0 0 0 0 ...
+ $ Sport_Model      : int  0 0 0 0 0 0 1 0 0 0 ...
+ $ Backseat_Divider : int  1 1 1 1 1 1 1 1 0 1 ...
+ $ Metallic_Rim     : int  0 0 0 0 0 0 0 0 1 0 ...
+ $ Radio_cassette   : int  0 0 0 0 0 0 0 0 1 0 ...
+ $ Parking_Assistant: int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Tow_Bar          : int  0 0 0 0 0 0 0 0 0 0 ...
+
+=== DATASET DIMENSIONS ===
+Rows: 1436 
+Columns: 39 
+
+=== FIRST FEW ROWS ===
+  Id                                             Model Price Age_08_04
+1  1     TOYOTA Corolla 2.0 D4D HATCHB TERRA 2/3-Doors 13500        23
+2  2     TOYOTA Corolla 2.0 D4D HATCHB TERRA 2/3-Doors 13750        23
+3  3 \xa0TOYOTA Corolla 2.0 D4D HATCHB TERRA 2/3-Doors 13950        24
+  Mfg_Month Mfg_Year    KM Fuel_Type HP Met_Color  Color Automatic   CC Doors
+1        10     2002 46986    Diesel 90         1   Blue         0 2000     3
+2        10     2002 72937    Diesel 90         1 Silver         0 2000     3
+3         9     2002 41711    Diesel 90         1   Blue         0 2000     3
+  Cylinders Gears Quarterly_Tax Weight Mfr_Guarantee BOVAG_Guarantee
+1         4     5           210   1165             0               1
+2         4     5           210   1165             0               1
+3         4     5           210   1165             1               1
+  Guarantee_Period ABS Airbag_1 Airbag_2 Airco Automatic_airco Boardcomputer
+1                3   1        1        1     0               0             1
+2                3   1        1        1     1               0             1
+3                3   1        1        1     0               0             1
+  CD_Player Central_Lock Powered_Windows Power_Steering Radio Mistlamps
+1         0            1               1              1     0         0
+2         1            1               0              1     0         0
+3         0            0               0              1     0         0
+  Sport_Model Backseat_Divider Metallic_Rim Radio_cassette Parking_Assistant
+1           0                1            0              0                 0
+2           0                1            0              0                 0
+3           0                1            0              0                 0
+  Tow_Bar
+1       0
+2       0
+3       0
+
+=== COLUMN NAMES ===
+ [1] "Id"                "Model"             "Price"            
+ [4] "Age_08_04"         "Mfg_Month"         "Mfg_Year"         
+ [7] "KM"                "Fuel_Type"         "HP"               
+[10] "Met_Color"         "Color"             "Automatic"        
+[13] "CC"                "Doors"             "Cylinders"        
+[16] "Gears"             "Quarterly_Tax"     "Weight"           
+[19] "Mfr_Guarantee"     "BOVAG_Guarantee"   "Guarantee_Period" 
+[22] "ABS"               "Airbag_1"          "Airbag_2"         
+[25] "Airco"             "Automatic_airco"   "Boardcomputer"    
+[28] "CD_Player"         "Central_Lock"      "Powered_Windows"  
+[31] "Power_Steering"    "Radio"             "Mistlamps"        
+[34] "Sport_Model"       "Backseat_Divider"  "Metallic_Rim"     
+[37] "Radio_cassette"    "Parking_Assistant" "Tow_Bar"          
+
+=== DATA TYPES SUMMARY ===
+Numeric columns: 36 
+Character columns: 3 
+
+=== PRICE ANALYSIS (TARGET VARIABLE) ===
+Mean Price: 10730.82 
+Median Price: 9900 
+Std Dev Price: 3626.96 
+Min Price: 4350 
+Max Price: 32500 
+Price Range: 28150 
+Quartiles:
+  25%   50%   75% 
+ 8450  9900 11950 
+
+=== AGE (Age_08_04) ANALYSIS ===
+Mean Age: 55.95 months
+Range Age: 1 - 80 months
+
+=== MILEAGE (KM) ANALYSIS ===
+Mean Mileage: 68533 km
+Median Mileage: 63390 km
+Max Mileage: 243000 km
+
+=== ENGINE SPECIFICATIONS ===
+Summary of HP:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   69.0    90.0   110.0   101.5   110.0   192.0 
+
+Summary of CC:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1300    1400    1600    1577    1600   16000 
+
+=== FUEL TYPE DISTRIBUTION ===
+
+   CNG Diesel Petrol 
+    17    155   1264 
+Fuel Type Percentages:
+
+      CNG    Diesel    Petrol 
+ 1.183844 10.793872 88.022284 
+
+=== COLOR DISTRIBUTION ===
+
+  Grey   Blue    Red  Green  Black Silver  White Violet  Beige Yellow 
+   301    283    278    220    191    122     31      4      3      3 
+
+=== KEY FEATURE DISTRIBUTIONS ===
+Automatic - Percentage with feature: 5.6 %
+ABS - Percentage with feature: 81.3 %
+Airbag_1 - Percentage with feature: 97.1 %
+Airco - Percentage with feature: 50.8 %
+CD_Player - Percentage with feature: 21.9 %
+Power_Steering - Percentage with feature: 97.8 %
+Metallic_Rim - Percentage with feature: 20.5 %
+Sport_Model - Percentage with feature: 30 %
+
+=== CORRELATION WITH PRICE ===
+Warning message:
+In cor(corolla$Price, corolla[[col]], use = "complete.obs") :
+  the standard deviation is zero
+    Boardcomputer   Automatic_airco            Weight         CD_Player 
+       0.60129196        0.58826200        0.58119759        0.48137444 
+            Airco   Powered_Windows      Central_Lock                HP 
+       0.42925943        0.35651823        0.34345757        0.31498983 
+              ABS          Airbag_2         Mistlamps     Quarterly_Tax 
+       0.30613784        0.24897390        0.22208252        0.21919691 
+    Mfr_Guarantee             Doors       Sport_Model  Guarantee_Period 
+       0.19780199        0.18532555        0.16412096        0.14662661 
+               CC         Met_Color      Metallic_Rim  Backseat_Divider 
+       0.12638920        0.10890475        0.10856398        0.10256915 
+         Airbag_1    Power_Steering             Gears Parking_Assistant 
+       0.09358787        0.06427537        0.06310386        0.04437477 
+        Automatic   BOVAG_Guarantee             Radio    Radio_cassette 
+       0.03308069        0.02813304       -0.04188735       -0.04317899 
+          Tow_Bar                KM         Age_08_04 
+      -0.17236860       -0.56996016       -0.87659050 
+
+=== TOP 5 PRICE PREDICTORS (BY CORRELATION) ===
+  Boardcomputer Automatic_airco          Weight       CD_Player           Airco 
+      0.6012920       0.5882620       0.5811976       0.4813744       0.4292594 
+
+=== NEGATIVE CORRELATIONS WITH PRICE ===
+         Radio Radio_cassette        Tow_Bar             KM      Age_08_04 
+   -0.04188735    -0.04317899    -0.17236860    -0.56996016    -0.87659050 
+
+=== PRICE BY FUEL TYPE ===
+# A tibble: 3 ├ù 7
+  Fuel_Type Count Mean_Price Median_Price Std_Dev Min_Price Max_Price
+  <chr>     <int>      <dbl>        <dbl>   <dbl>     <int>     <int>
+1 CNG          17      9421.         8950   2492.      5250     14950
+2 Diesel      155     11295.         8950   5536.      4350     32500
+3 Petrol     1264     10679.         9940   3327.      5250     24500
+
+=== PRICE BY TRANSMISSION TYPE (Automatic) ===
+`summarise()` has grouped output by 'Automatic'. You can override using the
+`.groups` argument.
+Warning message:
+Returning more (or less) than 1 row per `summarise()` group was deprecated in
+dplyr 1.1.0.
+Γä╣ Please use `reframe()` instead.
+Γä╣ When switching from `summarise()` to `reframe()`, remember that `reframe()`
+  always returns an ungrouped data frame and adjust accordingly. 
+# A tibble: 1,436 ├ù 5
+# Groups:   Automatic [2]
+   Automatic Transmission Count Mean_Price Median_Price
+       <int> <chr>        <int>      <dbl>        <dbl>
+ 1         0 Manual        1356     10702.         9900
+ 2         0 Manual        1356     10702.         9900
+ 3         0 Manual        1356     10702.         9900
+ 4         0 Manual        1356     10702.         9900
+ 5         0 Manual        1356     10702.         9900
+ 6         0 Manual        1356     10702.         9900
+ 7         0 Manual        1356     10702.         9900
+ 8         0 Manual        1356     10702.         9900
+ 9         0 Manual        1356     10702.         9900
+10         0 Manual        1356     10702.         9900
+# Γä╣ 1,426 more rows
+
+=== PRICE BY METALLIC RIM ===
+`summarise()` has grouped output by 'Metallic_Rim'. You can override using the
+`.groups` argument.
+Warning message:
+Returning more (or less) than 1 row per `summarise()` group was deprecated in
+dplyr 1.1.0.
+Γä╣ Please use `reframe()` instead.
+Γä╣ When switching from `summarise()` to `reframe()`, remember that `reframe()`
+  always returns an ungrouped data frame and adjust accordingly. 
+# A tibble: 1,436 ├ù 5
+# Groups:   Metallic_Rim [2]
+   Metallic_Rim Metallic_Rim_Present Count Mean_Price Median_Price
+          <int> <chr>                <int>      <dbl>        <dbl>
+ 1            0 No                    1142     10531.         9750
+ 2            0 No                    1142     10531.         9750
+ 3            0 No                    1142     10531.         9750
+ 4            0 No                    1142     10531.         9750
+ 5            0 No                    1142     10531.         9750
+ 6            0 No                    1142     10531.         9750
+ 7            0 No                    1142     10531.         9750
+ 8            0 No                    1142     10531.         9750
+ 9            0 No                    1142     10531.         9750
+10            0 No                    1142     10531.         9750
+# Γä╣ 1,426 more rows
+
+=== DEPRECIATION ANALYSIS BY AGE ===
+# A tibble: 5 ├ù 6
+  Age_Group Count Mean_Price Median_Price Mean_Age Mean_KM
+  <fct>     <int>      <dbl>        <dbl>    <dbl>   <dbl>
+1 0-24mo      122     18944.        18775     15.4   24979
+2 24-36mo     102     15518.        15475     30.4   41136
+3 36-48mo     197     11863.        11950     42.2   56777
+4 48-60mo     290     10293.        10500     54.8   69549
+5 60+mo       725      8543.         8600     70.5   82505
+
+=== MILEAGE AND PRICE ANALYSIS ===
+# A tibble: 5 ├ù 5
+  KM_Group Count Mean_Price Median_Price Mean_KM
+  <fct>    <int>      <dbl>        <dbl>   <dbl>
+1 0-30K      187     15898.        15950   18591
+2 30-50K     296     11906.        11000   40731
+3 50-80K     508      9965.         9500   64966
+4 80-150K    393      8834.         8750  103289
+5 150K+       52      7281.         6950  178569
+
+=== MISSING VALUES CHECK ===
+No missing values detected
+
+=== OUTLIER DETECTION (PRICE) ===
+Number of price outliers: 110 
+Outlier prices range: 17250 - 32500 
+
+=== HIGH-VALUE VS LOW-VALUE VEHICLES ===
+High-Value Vehicles (>= Median):
+  Count: 726 
+  Mean Age: 43.2 months
+  Mean KM: 50674 
+  % Automatic: 6.1 %
+  % Diesel: 9.5 %
+
+Low-Value Vehicles (< Median):
+  Count: 710 
+  Mean Age: 69 months
+  Mean KM: 86795 
+  % Automatic: 5.1 %
+  % Diesel: 12.1 %
+
+=== GENERATING VISUALIZATIONS ===
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+Warning message:
+In cor(numeric_data, use = "complete.obs") : the standard deviation is zero
+Error in hclust(as.dist(1 - corr), method = hclust.method) : 
+  NA/NaN/Inf in foreign function call (arg 10)
+Calls: corrplot.mixed ... corrplot -> corrMatOrder -> reorder_using_hclust -> 
+hclust
+Execution halted
